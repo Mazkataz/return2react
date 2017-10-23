@@ -32,10 +32,10 @@ console.log(props.counter);
 return ( 
   <div> 
   {props.counter}
-<form onSubmit = {  props.verify } >
+<form onSubmit = {  props.verify() } >
 
-<input type="text"  placeholder = "user" onChange ={props.userChange} />
-<input type="text"  placeholder = "pass" onChange ={props.passChange} />
+<input type="text"  value ={props.username} onChange ={props.userChange()} />
+<input type="text"  value={props.password}  onChange ={props.passChange()} />
 <button onClick = {  props.increment}> submit </button>
 
 
@@ -53,26 +53,33 @@ class App extends Component {
 constructor(props){
 super(props);
 
-this.state = { counter:0, loggedIn:false}
+this.state = { counter:0, loggedIn:false, username: "", password:""}
 
+//this.verify = this.verify.bind(this); 
 }
 
-verify(){ 
-
-return(this.props.username=="Maz" && this.props.password =="har" ? this.setState({isLoggedIn: true}) : ""); 
-
-
-}
-
-userChange(){
-this.setState({username : this.username.target.value, password : this.password.target.value});
+ verify = (e)=> { 
+e.preventDefault(); 
+this.setState({isLoggedIn: true}); 
+return(this.state.username=="Maz" && this.state.password =="har" ? this.setState({loggedIn: true}) : this.setState({loggedIn:null})); 
 
 
 }
 
-passChange(){
+userChange = (event) => {
+  console.log(event.target.value); 
+this.setState({username : event.target.value});
+
 
 }
+
+
+
+passChange = (event) => {
+  
+  console.log(event.target.value); 
+  this.setState({password : event.target.value});
+  }
 
 increment(){ 
   this.setState({ counter :this.state.counter+1 }); 
@@ -89,7 +96,10 @@ increment(){
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <Dumb increment = { () => this.increment()} 
-          counter = {this.state.counter} /> 
+          counter = {this.state.counter} 
+          verify = {(e) => this.verify}
+          userChange = {(e)=> this.userChange}
+          passChange = {(e)=> this.passChange}  /> 
 
           <Es6 loggedIn = {this.state.loggedIn}/> 
 
