@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './Navbar.js'
 
 const Es6 = (props) => <div> {props.loggedIn ? "You are now logged in" : "Please log in"} </div>
 
@@ -60,7 +60,6 @@ this.state = { counter:0, loggedIn:false, username: "", password:""}
 
  verify = (e)=> { 
 e.preventDefault(); 
-this.setState({isLoggedIn: true}); 
 return(this.state.username=="Maz" && this.state.password =="har" ? this.setState({loggedIn: true}) : this.setState({loggedIn:null})); 
 
 
@@ -88,6 +87,7 @@ increment(){
   render() {
     return (
       <div className="App">
+        <Navbar loggedIn = {this.state.loggedIn} />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
