@@ -2,26 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './Navbar.js'
+import Box from './Box.js'
 
 const Es6 = (props) => <div> {props.loggedIn ? "You are now logged in" : "Please log in"} </div>
-
-const Comp = (props) => {
-
-return(
-<div> 
-
-Hello sons, this is Comp
-<div>
-{props.counter %2==0 ? "odd" : "even"}
-</div> 
-
-  </div> 
-
-);
-
-
-}
-
 
 
  const Dumb = (props) =>{ 
@@ -76,7 +59,6 @@ this.setState({username : event.target.value});
 
 passChange = (event) => {
   
-  console.log(event.target.value); 
   this.setState({password : event.target.value});
   }
 
@@ -90,7 +72,8 @@ increment(){
         <Navbar loggedIn = {this.state.loggedIn} />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Hello World.</h1>
+          
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
@@ -102,8 +85,8 @@ increment(){
           passChange = {(e)=> this.passChange}  /> 
 
           <Es6 loggedIn = {this.state.loggedIn}/> 
-
-          <Comp counter = {this.state.counter} />
+          <Box renderImage = "https://pbs.twimg.com/media/DIJ7ZNXXUAIwH_8.jpg"/>
+          <Box renderImage ="https://images.moviepilot.com/image/upload/c_fill,h_470,q_auto:good,w_620/reu6ax1m5d39jtu6lakt.jpg" />
       </div>
     );
   }
