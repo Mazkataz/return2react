@@ -43,7 +43,7 @@ this.state = { counter:0, loggedIn:false, username: "", password:""}
 
  verify = (e)=> { 
 e.preventDefault(); 
-return(this.state.username=="Maz" && this.state.password =="har" ? this.setState({loggedIn: true}) : this.setState({loggedIn:null})); 
+return(this.state.username==="Maz" && this.state.password ==="har" ? this.setState({loggedIn: true}) : this.setState({loggedIn:null})); 
 
 
 }
@@ -85,8 +85,13 @@ increment(){
           passChange = {(e)=> this.passChange}  /> 
 
           <Es6 loggedIn = {this.state.loggedIn}/> 
-          <Box renderImage = "https://pbs.twimg.com/media/DIJ7ZNXXUAIwH_8.jpg"/>
-          <Box renderImage ="https://images.moviepilot.com/image/upload/c_fill,h_470,q_auto:good,w_620/reu6ax1m5d39jtu6lakt.jpg" />
+          <Box renderImage = "https://pbs.twimg.com/media/DIJ7ZNXXUAIwH_8.jpg"
+            description = "this is a funny image"/>
+          <Box renderImage ="https://images.moviepilot.com/image/upload/c_fill,h_470,q_auto:good,w_620/reu6ax1m5d39jtu6lakt.jpg" 
+          description = "this is Gogeta super saiyan one" />
+           <Box renderImage ={this.state.username} 
+          description = {this.state.password}/>
+          
       </div>
     );
   }
