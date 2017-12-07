@@ -8,7 +8,7 @@ const Es6 = (props) => <div> {props.loggedIn ? "You are now logged in" : "Please
 
 
  const Dumb = (props) =>{ 
-console.log(props.counter); 
+//console.log(props.counter); 
 
 
 
@@ -36,7 +36,7 @@ class App extends Component {
 constructor(props){
 super(props);
 
-this.state = { counter:0, loggedIn:false, username: "", password:""}
+this.state = { counter:0, loggedIn:false, username: "", password:"", pictures:[]}
 
 //this.verify = this.verify.bind(this); 
 }
@@ -49,7 +49,6 @@ return(this.state.username==="Maz" && this.state.password ==="har" ? this.setSta
 }
 
 userChange = (event) => {
-  console.log(event.target.value); 
 this.setState({username : event.target.value});
 
 
@@ -62,8 +61,17 @@ passChange = (event) => {
   this.setState({password : event.target.value});
   }
 
+
+
 increment(){ 
-  this.setState({ counter :this.state.counter+1 }); 
+
+  let temp = this.state.pictures;
+  if(this.state.username){
+  temp.push((this.state.username,this.state.password)); 
+  }
+
+  this.setState({ counter :this.state.counter+1, pictures:temp }); 
+  console.log(this.state.pictures); 
 }
 
   render() {
@@ -87,11 +95,17 @@ increment(){
           <Es6 loggedIn = {this.state.loggedIn}/> 
           <Box renderImage = "https://pbs.twimg.com/media/DIJ7ZNXXUAIwH_8.jpg"
             description = "this is a funny image"/>
+
+          
           <Box renderImage ="https://images.moviepilot.com/image/upload/c_fill,h_470,q_auto:good,w_620/reu6ax1m5d39jtu6lakt.jpg" 
           description = "this is Gogeta super saiyan one" />
-           <Box renderImage ={this.state.username} 
-          description = {this.state.password}/>
+        
           
+          {this.state.pictures.map(item=> (
+              <Box renderImage = {item}
+              description = {this.state.password}/> 
+            ))}
+
       </div>
     );
   }
