@@ -5,10 +5,15 @@ import React from 'react';
 return(
 <div className = "navbar">
 
-this is the navbar
+<a href="#" > Home Page </a> 
+<a href="#"> Experience </a> 
+
+<a href="#"> About Us </a> 
+<a href="#"> Contact </a> 
+
 
 <div className = "logged-display"> 
-{props.loggedIn ? "you are logged in" : "you are not logged in"};  
+{props.loggedIn ? <a href="#"> Sign Out </a>  : <a href="#"> Sign In </a>};  
 </div> 
 
 
